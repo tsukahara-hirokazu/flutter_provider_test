@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:guuchiru_app/providers/counter.dart';
+import 'package:guuchiru_app/providers/counter10.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
@@ -15,7 +16,8 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text("${Provider.of<Counter>(context).count}",
+            Text(
+                "${Provider.of<Counter>(context).count + Provider.of<Counter10>(context).count10}",
                 style: TextStyle(
                   fontSize: 20.0,
                 )),
@@ -25,12 +27,22 @@ class Home extends StatelessWidget {
             RaisedButton(
               onPressed: () =>
                   Provider.of<Counter>(context, listen: false).increment(),
-              child: Icon(Icons.trending_up),
+              child: Text("+1"),
             ),
             RaisedButton(
               onPressed: () =>
                   Provider.of<Counter>(context, listen: false).decrement(),
-              child: Icon(Icons.trending_down),
+              child: Text("-1"),
+            ),
+            RaisedButton(
+              onPressed: () =>
+                  Provider.of<Counter10>(context, listen: false).increment10(),
+              child: Text("+10"),
+            ),
+            RaisedButton(
+              onPressed: () =>
+                  Provider.of<Counter10>(context, listen: false).decrement10(),
+              child: Text("-10"),
             ),
           ],
         ),
